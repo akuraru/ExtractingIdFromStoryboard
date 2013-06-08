@@ -18,7 +18,7 @@ def endTest ()
     puts ""
     puts "#{$success} / #{$count} Test"
 end
-    
+
 
 user = UserDefualts.new
 str = user.exchange(user.fileRead($testFile))

@@ -63,7 +63,7 @@ class UserDefualts
   end
   def fileRead(fileName)
     data = nil
-    File.open(fileName, "r:UTF-16") {|f|
+    File.open(fileName,  :mode => "rb", :encoding => "UTF-16LE") {|f|
       transText = f.read.toutf8
       data = transText.scan(/(.*)\n/).flatten
     }
@@ -99,7 +99,7 @@ class UserDefualts
     
     head = "#{dir}#{$fileName}.h"
     FileUtils.mkdir_p(dir) unless FileTest.exist?(dir)
-    File.open(head, "w:UTF-16"){|f|
+    File.open(head, "w:UTF-8"){|f|
       f.write self.header(arrType, $fileName)
     }
   end

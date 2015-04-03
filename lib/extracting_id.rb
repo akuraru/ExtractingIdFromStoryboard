@@ -57,7 +57,7 @@ module ExtractingId
       c[0,1].capitalize + c[1..-1]
     end
     def define
-      "k" + self.class.name + self.capitalize
+      "k" + self.class_name + self.capitalize
     end
     def nsString
       '@"' + @name + '"'
@@ -67,16 +67,25 @@ module ExtractingId
     end
   end
   class Segue < Type
+    def class_name
+      "Segue"
+    end
     def == (type)
       Segue === type && super(type)
     end
   end
   class Restore < Type
+    def class_name
+      "Restore"
+    end
     def == (type)
       Restore === type && super(type)
     end
   end
   class Storyboard < Type
+    def class_name
+      "Storyboard"
+    end
     def == (type)
       Storyboard === type && super(type)
     end

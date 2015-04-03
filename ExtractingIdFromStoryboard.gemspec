@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ExtractingIdFromStoryboard/version'
+require 'extracting_id/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "ExtractingIdFromStoryboard"
-  spec.version       = ExtractingIdFromStoryboard::VERSION
+  spec.version       = ExtractingId::VERSION
   spec.authors       = ["akuraru"]
   spec.email         = ["akuraru@gmail.com"]
 

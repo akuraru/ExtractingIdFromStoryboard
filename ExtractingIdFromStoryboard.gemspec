@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "https://github.com/akuraru/ExtractingIdFromStoryboard"
   end
 
+  spec.add_runtime_dependency "thor", "~> 0.18.1"
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
 end

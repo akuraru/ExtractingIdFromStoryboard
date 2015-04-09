@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["akuraru@gmail.com"]
 
   spec.summary       = %q{this tool for extracting ids from Storyboard}
-  spec.description   = %q{this tool for extracting ids from Storyboard. Were extracted by specifying the Storyboard, it will be defined together in Header file  spec.homepage      = "https://github.com/akuraru/ExtractingIdFromStoryboard"
+  spec.description   = %q{this tool for extracting ids from Storyboard. Were extracted by specifying the Storyboard, it will be defined together in Header file}
+  spec.homepage      = "https://github.com/akuraru/ExtractingIdFromStoryboard"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

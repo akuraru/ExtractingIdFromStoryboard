@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require "extracting_id/version"
+require "extracting_id"
+require "thor"
+
+module ExtractingId
+  #= ExtractingId CLI
+  class CLI < Thor
+    default_task :create
+
+    option :storyboard, :type => :string, :aliases => '-s', :required => true,  :desc => 'input file'
+    option :output, :type => :string, :aliases => '-o', :default => "./", :desc => 'output directory'
+    option :file_name, :type => :string, :aliases => '-f', :default => "ExtactedID", :desc => 'output file name'
+    desc "create", "create UserDefaults wrapper"
+    def create
+      Core.new.main(options[:storyboard], options[:output], options[:file_name])
+    end
+
+    desc "version", "version"
+    def version
+      p VERSION
+    end
+  end
+end
+
+ExtractingId::CLI.start(ARGV)

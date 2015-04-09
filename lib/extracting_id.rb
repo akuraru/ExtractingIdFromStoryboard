@@ -1,11 +1,23 @@
 require 'extracting_id/version'
 
+
 module ExtractingId
   class Core
     def initialize
     end
+    def main(storyboardFile, output_dir, fileName = "ExtactedID")
+      readFile = self.fileRead(storyboardFile)
+      arrayString = scan(readFile)
+      arrType = self.exchange(arrayString)
+      header = self.header(arrType, fileName)
+      fileWrite(output_dir)
+    end
+
     def fileRead(fileName)
-      File.open(fileName,  :mode => "rb", :encoding => "UTF-8").read.scan(/(.*)\n/).flatten
+      File.open(fileName,  :mode => "rb", :encoding => "UTF-8").read
+    end
+    def scan(readFile)
+      readFile.scan(/(.*)\n/).flatten
     end
     def exchange(arrStr)
       arrStr.map{|s| to_class(s) }.flatten.inject([]){|a, s|
@@ -21,7 +33,7 @@ module ExtractingId
       elsif / restorationIdentifier="(\w+)" / =~ s then
         [Restore.new($1)]
       elsif /storyboardIdentifier="(\w+)"/ =~ s then
-       [Storyboard.new($1)]
+        [Storyboard.new($1)]
       else
         []
       end
@@ -32,13 +44,11 @@ module ExtractingId
     def define(arrType)
       arrType.map{|s| s.impDefine}.inject(""){|s, i| s + i}
     end
-    def main(file, dir)
-      arrType = self.exchange(self.fileRead(file))
-    
-      head = "#{dir}#{$fileName}.h"
-      FileUtils.mkdir_p(dir) unless FileTest.exist?(dir)
+    def fileWrite(output_dir)
+      head = "#{output_dir}#{fileName}.h"
+      FileUtils.mkdir_p(output_dir) unless FileTest.exist?(output_dir)
       File.open(head, "w:UTF-8"){|f|
-        f.write self.header(arrType, $fileName)
+        f.write header
       }
     end
   end
@@ -91,20 +101,3 @@ module ExtractingId
     end
   end
 end
-
-# $shorthand = false
-# $register = true
-# $help = false
-# $fileName = "ExtactedID"
-# $non = false
-# $/
-
-        # require 'optparse'
-        # opt = OptionParser.new
-        # opt.on('-s', '--shorthand') {|v| $shorthand = true }
-        # opt.on('-i', '--no_init') {|v| $register = false }
-        # opt.on('-h', '--help') {|v| $help = true }
-        # opt.on('--none') {|v| $non = true }
-        # opt.on("-f [file]", "--file_name [file]") {|v| $fileName = v}
-
-        # opt.permute!(ARGV)

@@ -12,7 +12,7 @@ describe ExtractingId do
 		}
 		context :fileRead do
 			before do
-				@fileRead = @user.fileRead(@testFile)
+				@fileRead = @user.scan(@user.fileRead(@testFile))
 				@str = @user.exchange(@fileRead)
 			end
 			it :count do
